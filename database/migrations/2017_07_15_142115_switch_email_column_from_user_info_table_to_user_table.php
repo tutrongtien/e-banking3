@@ -29,7 +29,10 @@ class SwitchEmailColumnFromUserInfoTableToUserTable extends Migration
     public function down()
     {
         Schema::table('user_info', function (Blueprint $table) {
-             //
+            $table->string('email', 100);
+        });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('email');
         });
     }
 }
