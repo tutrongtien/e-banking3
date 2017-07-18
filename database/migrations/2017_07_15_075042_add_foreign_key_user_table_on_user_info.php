@@ -14,8 +14,9 @@ class AddForeignKeyUserTableOnUserInfo extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id')->references('id')->on('user_info')
-                ->onDelete('cascade');
+        
+        $table->foreign('id')->references('id')->on('user_info')
+        ->onDelete('cascade');
         });
     }
 
@@ -27,7 +28,8 @@ class AddForeignKeyUserTableOnUserInfo extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_id_foreign');
+        
+        $table->dropForeign('users_id_foreign');
         });
     }
 }
