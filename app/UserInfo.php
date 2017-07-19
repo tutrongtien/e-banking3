@@ -13,6 +13,6 @@ class UserInfo extends Model
 
     public function user()
     {
-    	return $this->hasOne('User');
+    	return $this->belongsTo('User');
     }
 }
