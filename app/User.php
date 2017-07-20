@@ -27,8 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+   protected $users = ['status' => 'boolean'];
+
+
     public function userInfo()
     {
         return $this->hasOne('UserInfo');
     }
+
+
 }
