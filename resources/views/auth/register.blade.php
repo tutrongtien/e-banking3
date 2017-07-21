@@ -14,11 +14,11 @@
     <fieldset>
 
     <!-- Form Name -->
-    <legend>Đăng kí tài khoản</legend>
+    <legend>�ang k� t�i kho?n</legend>
 
-    <!-- Chứng Minh Nhân Dân-->
+    <!-- Ch?ng Minh Nh�n D�n-->
     <div class="form-group{{ $errors->has('identity_card') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Chứng Minh Nhân Dân</label>
+        <label class="col-md-4 control-label">Ch?ng Minh Nh�n D�n</label>
         <div class="col-md-4 inputGroupContainer">
                 <input name="identity_card" class="form-control" type="number" />
                 @if ($errors->has('identity_card'))
@@ -29,9 +29,9 @@
         </div>
     </div>
 
-    <!-- ngày cấp -->
+    <!-- ng�y c?p -->
     <div class="form-group{{ $errors->has('date_of_identity_card') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Ngày Cấp</label>  
+        <label class="col-md-4 control-label">Ng�y C?p</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="date_of_identity_card" class="form-control"  type="date">
                 @if ($errors->has('date_of_identity_card'))
@@ -42,9 +42,9 @@
         </div>
     </div>
 
-    <!-- Họ và Tên-->
+    <!-- H? v� T�n-->
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Họ và Tên</label>  
+        <label class="col-md-4 control-label">H? v� T�n</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="name" class="form-control"  type="text">
                 @if ($errors->has('name'))
@@ -55,9 +55,9 @@
         </div>
     </div>
 
-    <!-- Ngày Sinh-->
+    <!-- Ng�y Sinh-->
     <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Ngày Sinh</label>  
+        <label class="col-md-4 control-label">Ng�y Sinh</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="date_of_birth" class="form-control"  type="date">
                 @if ($errors->has('date_of_birth'))
@@ -68,9 +68,9 @@
         </div>
     </div>
 
-    <!-- Số Điện Thoại-->
+    <!-- S? �i?n Tho?i-->
     <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Số Điện Thoại</label>  
+        <label class="col-md-4 control-label">S? �i?n Tho?i</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="phone" class="form-control"  type="number">
                 @if ($errors->has('phone'))
@@ -81,9 +81,9 @@
         </div>
     </div>
 
-    <!-- Địa Chỉ-->
+    <!-- �?a Ch?-->
     <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Địa Chỉ</label>  
+        <label class="col-md-4 control-label">�?a Ch?</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="address" class="form-control"  type="text">
                 @if ($errors->has('address'))
@@ -94,12 +94,12 @@
         </div>
     </div>
 
-    <!-- Tỉnh/ Thành Phố-->
+    <!-- T?nh/ Th�nh Ph?-->
     <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Tỉnh/ Thành Phố</label>  
+        <label class="col-md-4 control-label">T?nh/ Th�nh Ph?</label>  
         <div class="col-md-4 inputGroupContainer">
                 <select  name="city" class="form-control"  type="text" id="city">
-                    <option value="">Chọn Tỉnh/ Thành Phố</option>
+                    <option value="">Ch?n T?nh/ Th�nh Ph?</option>
                 </select>
                 @if ($errors->has('city'))
                     <span class="help-block">
@@ -109,12 +109,12 @@
         </div>
     </div>
 
-    <!-- Quận/ Huyện-->
+    <!-- Qu?n/ Huy?n-->
     <div class="form-group{{ $errors->has('district') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Quận/ Huyện</label>  
+        <label class="col-md-4 control-label">Qu?n/ Huy?n</label>  
         <div class="col-md-4 inputGroupContainer">
                 <select  name="district" class="form-control"  type="text" id="district">
-                    <option value="">Chọn Quận/ Huyện</option>
+                    <option value="">Ch?n Qu?n/ Huy?n</option>
                 </select>
                 @if ($errors->has('district'))
                     <span class="help-block">
@@ -124,9 +124,9 @@
         </div>
     </div>
 
-    <!-- Phường/ Xã-->
+    <!-- Phu?ng/ X�-->
     <div class="form-group{{ $errors->has('ward') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Phường/ Xã</label>  
+        <label class="col-md-4 control-label">Phu?ng/ X�</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="ward" class="form-control"  type="text">
                 @if ($errors->has('ward'))
@@ -150,9 +150,9 @@
         </div>
     </div>
 
-    <!-- Nhập lại Email-->
+    <!-- Nh?p l?i Email-->
     <div class="form-group{{ $errors->has('email_confirmation') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Nhập lại Email</label>  
+        <label class="col-md-4 control-label">Nh?p l?i Email</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="email_confirmation" class="form-control"  type="text">
                 @if ($errors->has('email_confirmation'))
@@ -163,9 +163,9 @@
         </div>
     </div>
 
-    <!-- Công việc-->
+    <!-- C�ng vi?c-->
     <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
-        <label class="col-md-4 control-label">Công việc</label>  
+        <label class="col-md-4 control-label">C�ng vi?c</label>  
         <div class="col-md-4 inputGroupContainer">
                 <input  name="job" class="form-control"  type="text">
                 @if ($errors->has('job'))
@@ -177,13 +177,13 @@
     </div>
 
     <!-- Success message -->
-    <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Đăng kí thành công. vui lòng xác nhận email đã đăng kí</div>
+    <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> �ang k� th�nh c�ng. vui l�ng x�c nh?n email d� dang k�</div>
 
     <!-- Button -->
     <div class="form-group">
       <label class="col-md-4 control-label"></label>
       <div class="col-md-4">
-        <button type="submit" class="btn btn-warning" >Gửi <span class="glyphicon glyphicon-send"></span></button>
+        <button type="submit" class="btn btn-warning" >G?i <span class="glyphicon glyphicon-send"></span></button>
       </div>
     </div>
 
