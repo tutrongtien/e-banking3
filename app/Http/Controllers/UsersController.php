@@ -43,12 +43,14 @@ class UsersController extends Controller
         $data = ['user_name' => $request->input('username'), 
                 'password' => $request->input('password'),
                 'status' => true ];
-        if ( Auth::attempt($data) == true ) {
+        $token = $request->input('g-recaptcha-response');
+        //dd($token);      
+        if (strlen($token) > 0 && Auth::attempt($data) == true) {
+
             $user = User::where('user_name', $data)->get();
             dd($user);
             return redirect('/profile/' . $user->id);
-        } 
-        else {
+        } else {
             return redirect('/login');
         }
             
