@@ -5,7 +5,8 @@
     <div class="row background">
     <div id="login-pading" class="login-color">
         {!!Form::open(['url' => 'form/login', 'class' => 'form-horizontal' ])
-            !!}    
+            !!}
+
       <div class="form-group">
         {!! Form::label('username', 'User Name', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-8">
@@ -18,6 +19,12 @@
         <div class="col-sm-8">
        {!! Form::password('password',['class' => 'form-control ']) !!}
         </div>
+      </div>
+
+      <div class="form-group col-sm-10">
+
+      <div class="g-recaptcha col-sm-offset-3 " data-sitekey="6Lc47SkUAAAAAOIKcRs8A6XOAu8qgyEKGNIWo9il"></div>
+       
       </div>
 
       <div class="form-group">

@@ -179,6 +179,9 @@ return [
 
         //Laravecollective HTML & FORMS
         Collective\Html\HtmlServiceProvider::class,
+        //Add packge Captcha
+        Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider::class,
+
 
     ],
 
@@ -230,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Captcha' => \Buzz\LaravelGoogleCaptcha\CaptchaFacade::class,
 
     ],
 
