@@ -32,7 +32,7 @@ class RegisterController extends Controller
 		$data = [
 			'type' => 1,
 			'bank_number' => $user->user_name,
-			'balance' => 1000000000,
+			'balance' => 0,
 			'currency' => 'vnd',
 			'user_id' => $user->id
 		];
@@ -65,7 +65,8 @@ class RegisterController extends Controller
             $this->accountByUser($user);
 
             // send email for register user
-            $linkActive = 'http://localhost:8000/user/active/' . $user->confirmation_code;
+            // $linkActive = 'http://localhost:8000/user/active/' . $user->confirmation_code;
+            $linkActive = url('/user/active/' . $user->confirmation_code);
             Mail::to($user)->send(new UserEmail($user, $random_password, $linkActive));
 
             DB::commit();
