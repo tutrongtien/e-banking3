@@ -19,10 +19,9 @@ class UsersController extends Controller
     {
         //
         $user = Auth::user();
-        $user_info= $user['id'];
-        $info = UserInfo::where('user_id', $user_info)->first();
+        
         //dd($info);
-        return view('layouts.master')->with('info', $info);
+        return view('layouts.master')->with('user', $user);
     }
 
     public function login(Request $request) {
@@ -42,8 +41,6 @@ class UsersController extends Controller
                 'status' => true ];
 
         $token_captcha = $request->input('g-recaptcha-response');
-         
-        $request->session()->put('user', $request->input('username'));
         
         if (strlen($token_captcha) > 0 && Auth::attempt($data, $remember = true) == true) {
             $user = Auth::user();
@@ -54,20 +51,18 @@ class UsersController extends Controller
             
     }
 
-    public function profile(Request $request) 
+    public function profile() 
     {
         $user = Auth::user();
-        $user_info= $user['id'];
-        $info = UserInfo::where('user_id', $user_info)->first();
-
+        $info = $user->userInfo;
+        //dd($info);	
+        
         return view('users.profile')->with(['user' => $user, 'info' => $info] );
     }
   
     public function logout(Request $request)
     {
-        $request->session()->forget('user');
         Auth::logout();
-        
         return redirect('/');
     }
         

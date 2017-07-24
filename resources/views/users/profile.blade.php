@@ -26,9 +26,9 @@
 		Thông Tin Cá Nhân
 	</div>
 	<div class="info-action">
-	  <div class="alert alert-info" role="alert">
+	  <!-- <div class="alert alert-info" role="alert">
 	  	Tên khách hàng : {{ $info->name }}
-	  </div>
+	  </div> -->
 	  <div class="alert alert-info" role="alert">
 	  	Chứng minh nhân dân : {{ $info->identity_card }}
 	  </div>
