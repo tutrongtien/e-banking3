@@ -1,3 +1,52 @@
+*{
+	font-family: 'Noto Sans', sans-serif;
+	text-decoration: none;
+
+}
+/* master laysout */
+
+header {
+	margin-bottom: 10px;
+	border-bottom: 2px solid;
+	color: green;
+	padding-bottom: 10px;
+
+}
+.logo {
+	font-size: 30px;
+
+
+}
+footer{
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #006699;
+}
+/* end  master laysout*/
+
+/* userinfo */
+.f-info {
+	background-color: black;
+}
+div.info {
+	color: #fff;
+	text-align: center;
+	background-color:#006699 ;
+	font-size: 16px;
+	border: 2px;
+	border-radius: 10px 10px 0px 0px;
+	padding: 5px;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+div.info-action {
+	border-radius: 10px;
+	border: 2px solid #006699 ;
+	box-shadow: 3px 2px 3px black;
+	font-weight: bold;
+}
+/* end userinfo */
+/* login */
 .background{
 	background-image: url("../img/banner.jpg");
 	padding:150px;
@@ -15,7 +64,4 @@ span{
 	color: #fff;
 	font-weight: bold;
 }
-footer{
-	padding: 10px;
-	background-color: black;
-}
+/* end login */

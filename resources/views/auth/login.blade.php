@@ -1,23 +1,34 @@
-@extends('layouts.master')
 
-@section('content')
-<div class="container-pluid">
-    <div class="row background">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body class="background">
+  <div class="container-fluid">
+    <div>
     <div id="login-pading" class="login-color">
-        {!!Form::open(['url' => 'form/login', 'class' => 'form-horizontal' ])
+        {!!Form::open(['url' => '/profile', 'class' => 'form-horizontal' ])
             !!}
 
       <div class="form-group">
         {!! Form::label('username', 'User Name', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-8">
-        {!! Form::text('username', '' ,['class' => 'form-control']) !!}
+
+        {!! Form::text('username', '' ,['class' => 'form-control', 'placeholder' => 'Username', 'required' => 'required']) !!}
+        
         </div>
       </div>
 
       <div class="form-group">
         {!! Form::label('password', 'Password', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-8">
-       {!! Form::password('password',['class' => 'form-control ']) !!}
+       {!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'required' => 'required' ]) !!}
         </div>
       </div>
 
@@ -53,4 +64,6 @@
     
     </div>
 </div>
-@endsection
+</body>
+</html>
+
