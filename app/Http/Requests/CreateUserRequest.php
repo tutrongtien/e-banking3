@@ -35,6 +35,6 @@ class CreateUserRequest extends FormRequest
         'username.min' => 'Vui long nhap lon hon 5 ky tu',
         'password.required' => 'Vui long nhap mat khau',
 
-        ]
+        ];
     }
 }

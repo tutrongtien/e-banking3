@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
 use Auth;
@@ -19,7 +20,7 @@ class UsersController extends Controller
     {
         //
         $user = Auth::user();
-        
+
         //dd($info);
         return view('layouts.master')->with('user', $user);
     }
@@ -34,7 +35,7 @@ class UsersController extends Controller
         
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(CreateUserRequest $request)
     {
         $data = ['user_name' => $request->input('username'), 
                 'password' => $request->input('password'),
