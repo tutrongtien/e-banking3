@@ -22,7 +22,7 @@ Route::get('/logout', 'UsersController@logout');
 
 //register user
 Route::post('/register_user', 'RegisterController@store');
-
+Route::get('/user/active/{confirmcode}', 'RegisterController@confirm');
 
 Auth::routes();
 

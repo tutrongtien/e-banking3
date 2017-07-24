@@ -175,6 +175,19 @@
                     </div>
                 </div>
 
+                <!-- captcha-->
+                <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
+                    <label class="col-md-4 control-label"></label>  
+                    <div class="col-md-4 inputGroupContainer">
+                            <div class="g-recaptcha" data-sitekey="6Lc47SkUAAAAAOIKcRs8A6XOAu8qgyEKGNIWo9il" name="g-recaptcha-response"></div>
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                </span>
+                            @endif
+                    </div>
+                </div>
+
                 <!-- Success message -->
                 <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Ðang kí thành công. vui lòng xác nh?n email dã dang kí</div>
 
