@@ -26,13 +26,9 @@ class UsersController extends Controller
     }
 
     public function login(Request $request) {
-        if (!Auth::check() ) {
+       
             return redirect('/');
-        } else {
-            
-            return redirect('/profile');
-        }
-        
+              
     }
 
     public function postLogin(CreateUserRequest $request)
