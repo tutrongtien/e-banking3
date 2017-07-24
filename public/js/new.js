@@ -54,8 +54,7 @@ $(document).ready(function(){
                 required: true,
                 equalTo: "#email",
             },
-            job: "required"
-                
+            job: "required",               
         },
         messages: {
             identity_card: {
