@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
-Route::get('/login', 'UsersController@login');
-Route::post('form/login', 'UsersController@store');
+Route::get('/', 'UsersController@index');
 
+Route::get('/show', 'UsersController@profile')->middleware('auth');
+
+Route::get('/login', 'UsersController@login');
+Route::post('/profile', 'UsersController@postLogin');
+
+Route::get('/logout', 'UsersController@logout')->middleware('auth');
 
 //register user
 Route::post('/register_user', 'RegisterController@store');
