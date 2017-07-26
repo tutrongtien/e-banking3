@@ -34,7 +34,7 @@
             @endif
              </div>
 		</div>
-	</header><!-- /header --> <!-- class="container" style="height: 100px; border: 1px solid"> -->
+	</header>
 		
 	
 	<div class="container">
@@ -43,9 +43,9 @@
 		
 	</div>
 
-	<footer class="container-pluid">
+	<footer class="container-pluid fixed-bottom"">
 		
-		copyright@ Ecombanking 2017	
+		Copyright &copy; Ecombanking 2017	
 	</footer>
 
 </body>
