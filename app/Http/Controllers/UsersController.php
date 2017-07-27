@@ -22,7 +22,7 @@ class UsersController extends Controller
         $user = Auth::user();
 
         //dd($info);
-        return view('layouts.master')->with('user', $user);
+        return view('users.index')->with('user', $user);
     }
 
     public function login(Request $request) {
