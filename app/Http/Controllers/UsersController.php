@@ -54,6 +54,7 @@ class UsersController extends Controller
         $info = $user->userInfo;
         //dd($info);	
         
+        
         return view('users.profile')->with(['user' => $user, 'info' => $info] );
     }
   
