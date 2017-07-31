@@ -18,6 +18,9 @@ Route::get('/show', 'UsersController@profile')->middleware('auth');
 Route::get('/login', 'UsersController@login');
 Route::post('/profile', 'UsersController@postLogin');
 
+Route::get('password/change', 'UsersController@changePassword');
+Route::put('password/change', 'UsersController@updatePassword');
+
 Route::get('/logout', 'UsersController@logout')->middleware('auth');
 
 //register user

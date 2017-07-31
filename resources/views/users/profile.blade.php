@@ -9,9 +9,9 @@
 	<div class="list-group">
 	  <p class="list-group-item active ">Quản Lý Người Dùng</p>
 
-	  <a href="#" class="list-group-item">Thông tin cá nhân</a>
+	  <a href="" class="list-group-item">Thông tin cá nhân</a>
 	  <a href="#" class="list-group-item">Thông tin giao dịch</a>
-	  <a href="#" class="list-group-item">Đổi mật khẩu</a>
+	  <a href="{{ url('password/change') }}" class="list-group-item">Đổi mật khẩu</a>
 	</div>
 	<div class="list-group">
 	  <p class="list-group-item active">Giao Dịch</p>
