@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\UserInfo;
+use App\Account;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,11 @@ class User extends Authenticatable
 
     public function userInfo()
     {
-        return $this->hasOne('App\UserInfo',  'user_id', 'id');
+        return $this->hasOne('App\UserInfo', 'user_id', 'id');
+    }
+
+    public function account()
+    {
+        return $this->hasMany('App\Account');
     }
 }

@@ -1,18 +1,18 @@
 <?php
-
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
 use Auth;
 use App\User;
 use App\UserInfo;
+use App\Account;
+use App\Transaction;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\MessageBag;
-
+use Request;
+use DB;
 
 class UsersController extends Controller
 {
@@ -23,11 +23,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-        $user = Auth::user();
-
-        //dd($info);
-        return view('users.index')->with('user', $user);
+        return view('users.index');
     }
 
     public function login(Request $request) {
@@ -55,8 +51,39 @@ class UsersController extends Controller
     public function profile() 
     {
         $user = Auth::user();
-        $info = $user->userInfo;	
+        $info = $user->userInfo;
         return view('users.profile')->with(['user' => $user, 'info' => $info]);
+    }
+
+    public function viewBalance()
+    {
+        $count = 1;
+        $user = Auth::user();
+        $accounts = $user->account;
+
+        return view('users.balance')->with(['accounts' => $accounts, 'count' => $count]);
+    }
+
+    public function ajaxBalance($id) 
+    {
+        $account = Account::find($id);
+        return response()->json(['data' => $account]);  
+          
+    }
+
+    public function viewTransactions()
+    {
+        return view('users.transaction');
+    }
+
+    public function detailTransactions(Request $request, $id)
+    {
+        if($request->ajax()) {
+            $transactions = DB::table('transactions')->where('account_id', $id)->orderBy('time', 'desc')->get();
+            return response()->json(['data' => $transactions]);    
+        }
+        
+
     }
   
     public function logout(Request $request)
