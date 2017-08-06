@@ -76,14 +76,19 @@ class UsersController extends Controller
         return view('users.transaction');
     }
 
-    public function detailTransactions(Request $request, $id)
+    public function detailTransactions(Request $request)
     {
-        if($request->ajax()) {
-            $transactions = DB::table('transactions')->where('account_id', $id)->orderBy('time', 'desc')->get();
-            return response()->json(['data' => $transactions]);    
+        if(Request::ajax()) {
+            $id = Request::get('id');
+            $fdate = Request::get('fdate');
+            $tdate = Request::get('tdate');
+            $transactions = DB::table('transactions')
+                            ->where('account_id', $id)
+                            ->whereBetween('time', [$fdate, $tdate])
+                            ->orderBy('time', 'desc')->get();
+                            
+            return response()->json(['data' => $transactions]);
         }
-        
-
     }
   
     public function logout(Request $request)

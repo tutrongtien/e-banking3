@@ -18,14 +18,14 @@ class AccountsTableSeeder extends Seeder
         	[
         		'user_id' => $user->id,
         		'type' => 'Noi Dia',
-        		'bank_number' => '2088899009',
+        		'bank_number' => '2088899004',
         		'balance' => '1500000000',
         		'currency' => 'VND',
         	],
         	[
         		'user_id' => $user->id,
         		'type' => 'Quoc Te',
-        		'bank_number' => '2088899001',
+        		'bank_number' => '2088899007',
         		'balance' => '200000000',
         		'currency' => 'VND',
         	],

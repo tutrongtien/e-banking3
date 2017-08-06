@@ -63,7 +63,6 @@
 	  				$.ajax({
 	  					url:"{{url('/ajax/balance/')}}/" + id,
 	  					type:"get",
-	  					
 	  					success:function(kq) {
 							var output = "<table class ='table table-hover table-bordered'>";
 							$.each(kq, function(key, item){

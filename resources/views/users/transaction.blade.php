@@ -23,14 +23,14 @@
 
 	<div class="col-md-8 ">
 	<div class="info">
-		Thong tin giao dich
+		Thông tin giao dịch
 	</div>
 	<div class="info-action">
 
 	<div class="form-group">
-		{!! Form::open(['url' => '#', 'id' => 'transactions', 'name' => 'token_tran']) !!}
+		{!! Form::open(['url' => '#', 'id' => 'transactions']) !!}
 		<div class="form-group">
-			{!! Form::label('account', 'So tai Khoan') !!}
+			{!! Form::label('account', 'Số Tài Khoản') !!}
 			 <div class="form-controls">
 			{!! Form::select('account', $accounts, null, ['class' => 'form-control ', 'placeholder' => 'Mời bạn chọn tài khoản']) !!}
 			</div>
@@ -63,30 +63,29 @@
 		$(document).ready(function(){
 			$("#sublietke").on('click', function(e){
 				e.preventDefault();
+
 				fdate = $("#from_date").val();
 				tdate = $("#to_date").val();
-				id = $("#account").val();
+				account_id = $("#account").val();
 				_token = $("#transactions").find("input[name='_token']").val();
-				/*alert(fdate + tdate + id + _token);*/
+
 				$.ajax({
-					url:"{{url('transactions/detail')}}/" + id,
-					type:"POST",
-					data:{ fdate: fdate, tdate: tdate, _token: _token },
-					success:function(kq) {
-						
-						$.each(kq, function(key, item){
-							console.log(item);
+					url:"{{url('transactions/detail')}}",
+					type:"post",
+					data:{ fdate : fdate, tdate : tdate, _token : _token, id : account_id },
+					success:function(result) {
+
+						$.each(result, function(key, item){
 							output = "<table class='table table-hover table-bordered'>";
 							output += "<tr class='info'><th>STT</th><th>Thời gian</th><th>Địa điểm</th><th>Chi tiết giao dịch</th><th>Số tiền tăng</th><th>Số tiền giảm</th></tr>";
 							stt = 1;
-
-							$.each(item, function(a, b){
+							$.each(item, function(key2, transaction){
 								output += "<tr> <td>" + stt++ + "</td>";
-								output += "<td>" + b.time + "</td>";
-								output += "<td>" + b.place + "</td>";
-								output += "<td>" + b.detail + "</td>";
+								output += "<td>" + transaction.time + "</td>";
+								output += "<td>" + transaction.place + "</td>";
+								output += "<td>" + transaction.detail + "</td>";
 								output += "<td>" + "" + "</td>";
-								output += "<td>" + b.money + "</td></tr>";
+								output += "<td>" + transaction.money + "</td></tr>";
 							})
 							output += "</table>";
 						})
