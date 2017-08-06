@@ -7,13 +7,11 @@ use App\Account;
 
 class Transaction extends Model
 {
-    	protected $table = 'transactions';
-        protected $fillable = [
-            'place', 'detail', 'note', 'money', 'bank_id', 'bank_number', 'account_id', 'status'
-        ];
+    protected $fillable = ['time', 'place', 'detail', 'note', 'money', 'bank_id', 'bank_number', 'type', 'balance', 'status', 'account_id', 'code'];
 
-        public function account()
-        {
-        	return $this->belongsTo('App\Account');
-        }
+    public function account()
+    {
+    	return $this->belongsTo('App\Account');
+    }
 }
+

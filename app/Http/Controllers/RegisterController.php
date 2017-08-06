@@ -28,7 +28,8 @@ class RegisterController extends Controller
 	}
 
 	// create account for user
-	public function accountByUser(User $user){
+	public function accountByUser(User $user)
+    {
 		$data = [
 			'type' => 1,
 			'bank_number' => $user->user_name,
@@ -41,7 +42,8 @@ class RegisterController extends Controller
 	}
 
 	// create register 
-    public function store(RegisterFormRequest $request){
+    public function store(RegisterFormRequest $request)
+    {
     	// get all data
     	$info = $request->all();
 
@@ -82,7 +84,8 @@ class RegisterController extends Controller
         }  	
     }
 
-    public function confirm($confirmation_code){
+    public function confirm($confirmation_code)
+    {
     	if( ! $confirmation_code)
         {
             return redirect('/');

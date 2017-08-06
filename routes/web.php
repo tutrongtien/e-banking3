@@ -33,6 +33,11 @@ Route::get('/logout', 'UsersController@logout')->middleware('auth');
 Route::post('/register_user', 'RegisterController@store');
 Route::get('/user/active/{confirmcode}', 'RegisterController@confirm');
 
+//transfer
+Route::get('/internal_transfer', 'TransferController@internal_transfer');
+Route::get('/external_transfer', 'TransferController@external_transfer');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
