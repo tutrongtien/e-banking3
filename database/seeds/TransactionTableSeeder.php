@@ -11,13 +11,13 @@ class TransactionTableSeeder extends Seeder
      */
     public function run()
     {
-        $account = Account::where('bank_number', '2088899004')->first();
-        $account1 = Account::where('bank_number', '2088899007')->first();
+        $account2 = Account::where('bank_number', '2088899009')->first();
+        $account3 = Account::where('bank_number', '2088899001')->first();
 
         DB::table('transactions')->insert([
         	[
-        		'account_id' => $account->id,
-        		'time' => '2017-08-09 00:00:00',
+        		'account_id' => $account2->id,
+        		'time' => '2017-08-01 00:00:00',
         		'place' => 'ECOMB',
         		'detail' => 'CT TK The',
         		'note' => 'Chuyen tien',
@@ -29,8 +29,8 @@ class TransactionTableSeeder extends Seeder
         		'status' => true,
         	],
         	[
-        		'account_id' => $account->id,
-        		'time' => '2017-10-09 00:00:00',
+        		'account_id' => $account2->id,
+        		'time' => '2017-06-09 00:00:00',
         		'place' => 'ECOMB',
         		'detail' => 'CT TK The',
         		'note' => 'Chuyen tien',
@@ -42,8 +42,8 @@ class TransactionTableSeeder extends Seeder
         		'status' => true,
         	],
         	[
-        		'account_id' => $account->id,
-        		'time' => '2017-12-09 00:00:00',
+        		'account_id' => $account3->id,
+        		'time' => '2017-06-02 00:00:00',
         		'place' => 'ECOMB',
         		'detail' => 'CT TK The',
         		'note' => 'Chuyen tien',
@@ -55,8 +55,8 @@ class TransactionTableSeeder extends Seeder
         		'status' => true,
         	],
         	[
-        		'account_id' => $account1->id,
-        		'time' => '2017-12-31 00:00:00',
+        		'account_id' => $account2->id,
+        		'time' => '2017-05-31 00:00:00',
         		'place' => 'ECOMB',
         		'detail' => 'CT TK The',
         		'note' => 'Chuyen tien',
