@@ -13,8 +13,6 @@ class TransactionTableSeeder extends Seeder
     {
         $account = Account::where('bank_number', '2088899004')->first();
         $account1 = Account::where('bank_number', '2088899007')->first();
-        $account2 = Account::where('bank_number', '2088899009')->first();
-        $account3 = Account::where('bank_number', '2088899001')->first();
 
         DB::table('transactions')->insert([
         	[
