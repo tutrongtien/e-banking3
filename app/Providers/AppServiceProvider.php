@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\View\Factory as ViewFactoty;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,9 +12,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(ViewFactoty $view)
     {
         \Schema::defaultStringLength(191);
+        $view->composer('users.transaction','App\Http\Views\Composers\AccountComposer' );
+
     }
 
     /**

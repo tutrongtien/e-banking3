@@ -45,7 +45,7 @@
 
 	
 
-	<footer class="container-pluid fixed-bottom"">
+	<footer class="container-pluid"">
 		
 		Copyright &copy; Ecombanking 2017	
 	</footer>

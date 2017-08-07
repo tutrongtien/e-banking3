@@ -9,8 +9,9 @@
 	<div class="list-group">
 	  <p class="list-group-item active ">Quản Lý Người Dùng</p>
 
-	  <a href="" class="list-group-item">Thông tin cá nhân</a>
-	  <a href="#" class="list-group-item">Thông tin giao dịch</a>
+	  <a href="{{ url('show') }}" class="list-group-item">Thông tin cá nhân</a>
+	  <a href="{{ url('view/transactions') }}" class="list-group-item">Thông tin giao dịch</a>
+	  <a href="{{ url('view/balance') }}" class="list-group-item">Thông tin tài khoan</a>
 	  <a href="{{ url('password/change') }}" class="list-group-item">Đổi mật khẩu</a>
 	</div>
 	<div class="list-group">
@@ -21,47 +22,53 @@
 
 	</div>
 
-	<div class="col-md-7 ">
+	<div class="col-md-8 ">
 	<div class="info">
 		Thông Tin Cá Nhân
 	</div>
 	<div class="info-action">
-	  <!-- <div class="alert alert-info" role="alert">
-	  	Tên khách hàng : {{ $info->name }}
-	  </div> -->
-	  <div class="alert alert-info" role="alert">
-	  	Chứng minh nhân dân : {{ $info->identity_card }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	 Ngày cấp : {{ $info->date_of_identity_card }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Sinh nhật : {{ $info->date_of_birth }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Số điện thoại : {{ $info->phone }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Địa chỉ : {{ $info->address }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Thành phố : {{ $info->city }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Quận / Huyện : {{ $info->district }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Phường / Xã : {{ $info->ward }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Công việc: {{ $info->job }}
-	  </div>
-	  <div class="alert alert-info" role="alert">
-	  	Email: {{ $user->email }}
-	  </div>  
-	  <a class="btn btn-default btn-lg btn-block" href="{{ url('/edit/info') }}" title="">Sửa Thông Tin</a>
-	 </div>
-
+	<table class="table table-hover table-bordered">
+	  <tr>
+	    <th>Chứng minh nhân dân</th>
+	    <th>{{ $info->identity_card }}</th>
+	  </tr>
+	  <tr>
+	    <td>Ngày cấp</td>
+	    <td>{{ $user->userInfo->date_of_identity_card }}</td>
+	  </tr>
+	  <tr>
+	    <td>Sinh nhật</td>
+	    <td>{{ $info->date_of_birth }}</td>
+	  </tr>
+	  <tr>
+	    <td>Số điện thoại</td>
+	    <td>{{ $info->phone }}</td>
+	  </tr>
+	  <tr>
+	    <td>Địa chỉ</td>
+	    <td>{{  $info->address }}</td>
+	  </tr>
+	  <tr>
+	    <td>Tỉnh / Thành</td>
+	    <td>{{ $info->city }}</td>
+	  </tr>
+	  <tr>
+	    <td>Quận / Huyện</td>
+	    <td>{{ $info->district }}</td>
+	  </tr>
+	  <tr>
+	    <td>Phường / Xã</td>
+	    <td>{{ $info->ward }}</td>
+	  </tr>
+	  <tr>
+	    <td>Công việc</td>
+	    <td>{{ $info->job }}</td>
+	  </tr>
+	  <tr>
+	    <td>Email</td>
+	    <td>{{ $user->email }}</td>
+	  </tr>
+	</table>
 	</div>
 </div>
 </div>
