@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-<div class="f-info">
+	<div class="f-info">
 
 	<div class="col-md-4">
 		
@@ -27,7 +27,7 @@
 		Thông Tin Cá Nhân
 	</div>
 	<div class="info-action">
-	<table class="table table-hover table-bordered">
+	<table class="table table-hover table-striped">
 	  <tr>
 	    <th>Chứng minh nhân dân</th>
 	    <th>{{ $info->identity_card }}</th>
@@ -69,7 +69,9 @@
 	    <td>{{ $user->email }}</td>
 	  </tr>
 	</table>
+	<a href="{{ url('/edit/info/' . $info->id) }}" class="btn btn-info" title="">Sua Thong Tin</a>
 	</div>
+</div>
 </div>
 </div>
 @stop

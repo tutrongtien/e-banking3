@@ -8,7 +8,6 @@
 		
 	<div class="list-group">
 	  <p class="list-group-item active ">Quản Lý Người Dùng</p>
-
 	  <a href="{{ url('show') }}" class="list-group-item">Thông tin cá nhân</a>
 	  <a href="{{ url('view/transactions') }}" class="list-group-item">Thông tin giao dịch</a>
 	  <a href="{{ url('view/balance') }}" class="list-group-item">Thông tin tài khoan</a>
@@ -24,9 +23,10 @@
 
 	<div class="col-md-8 ">
 	<div class="info">
-		So Du Tai Khoan
+		Số Dư Tài Khoản
 	</div>
 	<div class="info-action">
+	<a href="{{url('balance/pdf')}}" class="btn btn-info pull-right" title="">PDF</a>
 	  <table class="table table-hover table-bordered">
 	  	<caption>Thông tin tài khoản tính đến ngày : {!! date("Y-m-d h:i:sa") !!} </caption>
 	  	<thead>
@@ -90,8 +90,6 @@
 	  		});
 
 	  </script>	
-
-
 	</div>
 </div>
 </div>

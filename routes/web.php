@@ -17,6 +17,8 @@ Route::get('/show', 'UsersController@profile')->middleware('auth');
 
 Route::get('/login', 'UsersController@login');
 Route::post('/profile', 'UsersController@postLogin');
+Route::get('/edit/info/{id}', 'UsersController@getUserInfo');
+Route::put('/info/', 'UsersController@editInfo');
 
 Route::get('password/change', 'UsersController@changePassword');
 Route::put('password/change', 'UsersController@updatePassword');
@@ -28,6 +30,8 @@ Route::get('view/transactions', 'UsersController@viewTransactions');
 Route::post('/transactions/detail', 'UsersController@detailTransactions');
 
 Route::get('/logout', 'UsersController@logout')->middleware('auth');
+
+Route::get('balance/pdf', 'UsersController@balancePDF');
 
 //register user
 Route::post('/register_user', 'RegisterController@store');

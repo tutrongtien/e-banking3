@@ -38,11 +38,6 @@ class User extends Authenticatable
         return $this->hasOne('App\UserInfo', 'user_id', 'id');
     }
 
-    public function account()
-    {
-        return $this->hasMany('App\Account');
-    }
-
     public function accounts()
     {
         return $this->hasMany('App\Account');

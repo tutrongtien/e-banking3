@@ -23,7 +23,7 @@
 
 	<div class="col-md-8 ">
 	<div class="info">
-		Thông tin giao dịch
+		Thông Tin Giao Dịch
 	</div>
 	<div class="info-action">
 
@@ -54,7 +54,6 @@
 		</div>
 		{!! Form::close() !!}
 	</div>
-
 	<div id="viewtransactions">
 		
 	</div>

@@ -29,8 +29,7 @@
 			</div>              
             @else
             	<a class = "pull-right" href="{{ url('/logout') }}" title="">Logout</a>
-            	<a class = "pull-right" href="{{ url('show') }}" title="">{{ Auth::user()->userInfo->name }}|</a> 
-  
+            	<a class = "pull-right" href="{{ url('show') }}" title="">{{ Auth::user()->userInfo->name }}|</a>   
             @endif
              </div>
 		</div>
@@ -45,7 +44,7 @@
 
 	
 
-	<footer class="container-pluid"">
+	<footer class="container"">
 		
 		Copyright &copy; Ecombanking 2017	
 	</footer>

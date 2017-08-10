@@ -1,7 +1,6 @@
 *{
 	font-family: 'Noto Sans', sans-serif;
 	text-decoration: none;
-
 }
 /* master laysout */
 
@@ -14,8 +13,6 @@ header {
 }
 .logo {
 	font-size: 30px;
-
-
 }
 footer{
 	margin-top: 10px;
@@ -26,23 +23,20 @@ footer{
 
 /* userinfo */
 .f-info {
-	background-color: black;
+	background-color: #717D7E;
 }
 div.info {
 	color: #fff;
 	text-align: center;
-	background-color:#006699 ;
+	background-color:#337ab7 ;
 	font-size: 16px;
 	border: 2px;
-	border-radius: 10px 10px 0px 0px;
-	padding: 5px;
+	padding: 9px;
 	padding-left: 10px;
 	margin-bottom: 5px;
 }
 div.info-action {
-	border-radius: 10px;
-	border: 2px solid #006699 ;
-	box-shadow: 3px 2px 3px black;
+	border: 1px solid #337ab7 ;
 	font-weight: bold;
 	padding: 10px;
 }

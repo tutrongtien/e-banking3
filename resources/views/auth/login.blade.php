@@ -18,7 +18,7 @@
 
       <div class="form-group">
         {!! Form::label('username', 'User Name', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-8">
+        <div class="col-sm-6">
 
         {!! Form::text('username', '' ,['class' => 'form-control', 'placeholder' => 'Username', 'required' => 'required']) !!}
         
@@ -27,7 +27,7 @@
 
       <div class="form-group">
         {!! Form::label('password', 'Password', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-8">
+        <div class="col-sm-6">
        {!! Form::password('password',['class' => 'form-control', 'placeholder' => 'Password', 'required' => 'required' ]) !!}
         </div>
       </div>

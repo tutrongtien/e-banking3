@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Input;
 use Auth;
 use App\User;
 use App\UserInfo;
@@ -13,9 +15,11 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\MessageBag;
 use Request;
 use DB;
+use PDF;
 
 class UsersController extends Controller
 {
+    use ThrottlesLogins;
     /**
      * Display a listing of the resource.
      *
@@ -34,16 +38,17 @@ class UsersController extends Controller
 
     public function postLogin(CreateUserRequest $request)
     {
+
         $data = ['user_name' => $request->input('username'), 
                 'password' => $request->input('password'),
                 'status' => true,
         ];
         $token_captcha = $request->input('g-recaptcha-response');
-        
+
         if (strlen($token_captcha) > 0 && Auth::attempt($data) == true) {
             return  redirect('/show');
         } else {
-            return redirect('/login');
+            return redirect('/login');      
         }
             
     }
@@ -55,11 +60,24 @@ class UsersController extends Controller
         return view('users.profile')->with(['user' => $user, 'info' => $info]);
     }
 
+    public function getUserInfo($id) 
+    {
+        $info = UserInfo::find($id);
+        return view('users.editinfo')->with(['info'=> $info]);
+
+    }
+    public function editInfo(UserInfo $info)
+    {
+        $input = Input::all();
+        $info->update($input);
+        return redirect('show');
+    }
+
     public function viewBalance()
     {
         $count = 1;
         $user = Auth::user();
-        $accounts = $user->account;
+        $accounts = $user->accounts;
 
         return view('users.balance')->with(['accounts' => $accounts, 'count' => $count]);
     }
@@ -128,5 +146,14 @@ class UsersController extends Controller
         } 
         return redirect('show');    
     }
-        
+
+    public function balancePDF() 
+    {
+        $user = Auth::user();
+        $accounts = $user->accounts;
+        $pdf = PDF::loadView('users.accountpdf', ['accounts' => $accounts]);
+        return $pdf->download('accounts.pdf');
+            
+    }
+      
 }
