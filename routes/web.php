@@ -44,6 +44,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('admin/delete/{user}', 'AdminController@delete');
+
+Route::get('admin/create', 'AdminController@create');
+Route::post('admin/store', 'AdminController@store');
+
+Route::get('admin/edit/{user}', 'AdminController@edit');
+Route::put('admin/update/{user}', 'AdminController@update');
+
+Route::get('admin/show/{user}', 'AdminController@show');
+
+Route::get('admin/index', 'AdminController@index');
+
+Route::get('admin/lock/{user}', 'AdminController@lockAndUnlockUser');
+
 Route::get('/test', function(){
-	return view('users.test');
+	return view('home');
 });

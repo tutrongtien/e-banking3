@@ -1,78 +1,90 @@
-@extends('layouts.master')
+@extends('layouts.user')
 
-@section('script')
-	<script type="text/javascript" src="{{ asset('js/transfer.js') }}"></script>
+@section('script_f')
+  <script type="text/javascript" src="{{ asset('js/transfer.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/new.css') }}">
 @stop
 
 @section('content')
-    <div id="test">
-    	<form method="post" action="/transfer" id="form_transfer" class="well form-horizontal">
-    		{{ csrf_field() }}
-    		<fieldset>
-    			<legend>Chuyển tiền đến một tài khoản trong Ngân Hàng</legend>
+    <p style="color: #15a4d3; font-weight: bold;">Chuyển tiền đến một tài khoản trong Ngân Hàng</p>
 
-    			<div class="form-group">
-                    <label class="col-md-4 control-label">Tài khoản chuyển</label>
-                    <div class="col-md-4 inputGroupContainer">
-                            <select name="account_id" class="form-control" id="account_id">
-                            	@foreach($accounts as $account)
-                            	<option value="{{ $account->bank_number }}">{{ $account->bank_number }} - {{ $account->user->userInfo->name}}</option>
-                            	@endforeach
+
+    <div class="panel panel-info">
+            <div class="panel-body">
+              <div class="row">
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody id="transfer">
+                        <tr>
+                            <td>Tài khoản chuyển</td>
+                            <td id="acc_id"><select name="account_id" class="form-control" id="account_id">
+                            @foreach($accounts as $account)
+                              <option value="{{ $account->bank_number }}">{{ $account->bank_number }} - {{ $account->user->userInfo->name}}</option>
+                            @endforeach                             
                             </select>
-                    </div>
-                </div>
+                        </td>
+                        </tr>
+                      <tr>
+                        <td>Số dư khả dụng</td>
+                        <td id="acc_balance"><div id="balance">
+                        
+                        </div>
+                      </tr>
+                      <tr>
+                        <td>Số tài khoản chuyển</td>
+                        <td id="acc_bank_number"><input  name="bank_number" class="form-control" type="number" id="bank_number"></td>
+                      </tr>
+                      <tr>
+                        <td>Tên người nhận</td>
+                        <td id="acc_name_to"><div id="name_to">                            
 
-                <!-- Số tiền trong tài khoản-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Số dư khả dụng (VND)</label>  
-                    <div class="col-md-4 inputGroupContainer" id="balance">
-                            <input  name="balance" class="form-control" type="number" readonly="" value="" id="balance">
-                    </div>
-                </div>
+                          </div>
+                         </td>
+                      </tr>
 
-                <!-- Nhập số tài khoản chuyển-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Số tài khoản chuyển</label>  
-                    <div class="col-md-4 inputGroupContainer">
-                            <input  name="bank_number" class="form-control" type="number" id="bank_number">
-                    </div>
-                </div>
+                      <tr>
+                        <td>Số tiền (VND)</td>
+                        <td id="acc_money"><input name="money" class="form-control" type="text" id="money" value="" onkeyup="format_num(id)"></td>
+                      </tr>
 
-                <!-- Tên người nhận-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Tên người nhận</label>  
-                    <div class="col-md-4 inputGroupContainer" id="name_to">
-                            <input  name="name_to" class="form-control" type="text" readonly="">
-                    </div>
-                </div>
+                      <tr>
+                        <td>Nội dung chuyển tiền</td>
+                        <td id="acc_note"><textarea name="note" class="form-control" rows="5" id="note"></textarea></td>
+                      </tr>
+                     
+                    </tbody>
 
-                <!-- Nhập số tiền chuyển-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Số tiền (VND)</label>  
-                    <div class="col-md-4 inputGroupContainer">
-                            <input  name="money" class="form-control" type="number" id="money">
-                    </div>
-                </div>
+                  </table>
 
-                <!-- Nội dung chuyển tiền-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Nội dung chuyển tiền</label>  
-                    <div class="col-md-4 inputGroupContainer">
-                            <textarea name="note" class="form-control" rows="5" id="note"></textarea>
-                    </div>
                 </div>
-                <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-4">
-                  <button type="button" class="btn btn-warning" id="submit">Gửi</button>                
-                  <button type="reset" class="btn btn-warning">Hủy</button>                 
-                </div>
+              </div>
             </div>
-                
-    		</fieldset>
-    	</form>
 
-    </div>
-    
+                 <div class="panel-footer">                     
+                    <span class="" id="footer_id">
+                        <button type="button" class="btn btn-warning" id="submit">Gửi</button>                
+                        <button type="reset" class="btn btn-warning">Hủy</button>
+                    </span>
+                </div>
+            
+          </div>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function format_num(id) {
+var number = document.getElementById(id).value;
+        number += '';
+        //number = number.replace(",","");
+        number = number.replace(/,/g, '');
+        x = number.split('.');
+        x1 = x[0];
+        x2 = (x.length > 1) ? '.' + x[0] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        document.getElementById(id).value = x1 + x2;
+    }
+//-->
+</SCRIPT>
 @stop

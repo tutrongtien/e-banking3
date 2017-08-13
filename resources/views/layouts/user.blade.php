@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+@section('script')
+	@yield('script_f')
+@stop
 
 @section('user')
 <div class="content_info">
@@ -21,9 +24,9 @@
 	            </li>
 	            <li class="list-group-item"><a href="{{ url('password/change') }}">Đổi mật khẩu</a>
 	            </li>
-	            <li class="list-group-item"><a href="#">Chuyển Tiền trong hệ thống</a>
+	            <li class="list-group-item {{ is_current_route('internal_transfer') }}"><a href="{{ url('internal_transfer') }}">Chuyển Tiền trong hệ thống</a>
 	            </li>
-	            <li class="list-group-item"><a href="#">Chuyển Tiền ngoài hệ thống</a>
+	            <li class="list-group-item {{ is_current_route('external_transfer') }}"><a href="{{ url('external_transfer')}}">Chuyển Tiền ngoài hệ thống</a>
 	            </li>
 	        </ul>
 	    </div>

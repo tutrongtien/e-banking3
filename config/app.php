@@ -183,6 +183,8 @@ return [
         Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider::class,
         // FDF
         Barryvdh\DomPDF\ServiceProvider::class,
+        //
+        Laravel\Passport\PassportServiceProvider::class,
         //Excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
 

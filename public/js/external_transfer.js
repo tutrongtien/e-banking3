@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	$('#account_id').change(function(){
 		var account_id = $('#account_id').val();
 		$.post('/api/get_balance', {id: account_id}, function(data, status){
@@ -11,118 +11,76 @@ $(document).ready(function(){
 	$('#account_id').change();
 
 	$('#submit').click(function(){
+		$('.loader').show();
 		var 
 			account_id = $('#account_id').val();
 			bank_name  = $('#bank_name').val();
 			bank_number = $('#bank_number').val();
-			money 	   = $('#money').val();
+			money 	   = $('#money').val().replace(/,/g, "");
+			money_input = $('#money').val();
 			note 	   = $('#note').val();
 			balance	= $('#balance').text();
 			name_input = $('#name_input').val();
 
 		$.post('/api/get_transaction_info', {account_id: account_id, bank_name : bank_name, bank_number: bank_number, money: money, note: note}, function(data, status){
+	        $('#footer_id').remove();
 	        if (  data != 'null') {
 	        	var html = '\
-						<form class="well form-horizontal">\
-							<fieldset>\
-								<legend>Xác nhận chuyển tiền đến một tài khoản ngoài Ngân Hàng</legend>\
-							</fieldset>\
-							\
-							<div class="form-group">\
-			                    <label class="col-md-4">Số tài khoản </label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + account_id + '</label>\
-			                    </div>\
-			                </div>\
-			                \
-			                <div class="form-group">\
-			                    <label class="col-md-4">Số dư khả dụng </label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + balance + '</label>\
-			                    </div>\
-			                </div>\
-			                <hr>\
-			                \
-			                <div class="form-group">\
-			                    <label class="col-md-4">Ngân hàng chuyển </label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + bank_name + '</label>\
-			                    </div>\
-			                </div>\
-			                \
-			                <div class="form-group">\
-			                    <label class="col-md-4">Số tài khoản nhận </label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + bank_number + '</label>\
-			                    </div>\
-			                </div>\
-			                \
-			                <div class="form-group">\
-			                    <label class="col-md-4">Tên người nhận </label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + name_input + '</label>\
-			                    </div>\
-			                </div>\
-			                <hr>\
-			                <div class="form-group">\
-			                    <label class="col-md-4">Số tiền</label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + money + ' VND</label>\
-			                    </div>\
-			                </div>\
-			                \
-			                <div class="form-group">\
-			                    <label class="col-md-4">Nội dung chuyển tiền</label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">' + note + '</label>\
-			                    </div>\
-			                </div>\
-			                \
-			                <div class="form-group">\
-			                    <label class="col-md-4">Phí chuyển tiền</label>  \
-			                    <div class="col-md-4">\
-			                            <label id="balance">11000 VND</label>\
-			                    </div>\
-			                </div>\
-			                \
-			                <div id="active_code">\
-				                <div class="form-group">\
-				                    <label class="col-md-4">Nhập mã xác nhận </label>\
-				                    <div class="col-md-4">\
-				                            <input name="code" type="text" id="code">\
-				                            <span id="message" style="color: red;"></span>\
-				                    </div>\
-				                </div>\
-				                \
-				                <div class="form-group">\
-				                    <label class="col-md-4"></label>\
-				                    <div class="col-md-4">\
-				                            <input type="button" id="submit_code" value="gửi" class="btn btn-warning">\
-				                    </div>\
-				                </div>\
-			                </div>\
-			            </form>\
+			                <tr>\
+		                        <td>Phí chuyển tiền</td>\
+		                        <td>11,000 VND</td>\
+                     		 </tr>\
+			                <tr id="active_code">\
+		                        <td>Nhập mã xác nhận</td>\
+		                        <td><input name="code" type="text" id="code">\
+		                        	<span id="message" style="color: red;"></span>\
+		                        </td>\
+                     		 </tr>\
+                     		 <tr id="footer_id_2">\
+		                        <td></td>\
+		                        <td><input type="button" id="submit_code" value="Gửi" class="btn btn-warning">\
+		                        </td>\
+                     		 </tr>\
         			';
+        		$('#acc_id').html('<label id="account_id">' + account_id + '</label>');
+    			$('#acc_balance').html('<label id="balance">' + balance + '</label>');
+    			$('#acc_bank_number').html('<label id="bank_number">' + bank_number + '</label>');
+    			$('#acc_name').html('<label id="name">' + name + ' VND</label>');
+    			$('#acc_money').html('<label id="money">' + money_input + ' VND</label>');
+    			$('#acc_note').html('<label id="note">' + note + '</label>');
+    			$('#acc_bank_name').html('<label id="bank_name">' + bank_name + '</label>');
+    			$('#acc_name_to').html('<label id="name_input">' + name_input + '</label>')
+    			
+  			    $('#transfer').append(html);	
 	        } else {
 	        	var html = '<div>\
-	        				<span>giao dịch thất bại</span>\
-	        				</div>';
+       				<span>giao dịch thất bại !!!!!</span>\
+       				<br>\
+       				<a href="\"> <<<< quay lại</a>\
+       				</div>';
+	       		$('#transfer').html(html);	
 	        }
 			
-      	    $('#test').html(html);
+	        //
+	        $('.loader').hide();
 
-      	    //
+      	    
       	    $('#submit_code').click(function(){
+      	    	//
+      	    	$('.loader').show();
+      	    	//
 				var code = $('#code').val();
 				$.post('/api/transaction', { code: code} , function(data, status){
 					if ( data == 'success') {
 						var html = '<p>Chuyển tiền thành công. Vui lòng kiểm tra email !!!</p>';
+						$('#footer_id_2').remove();
 						$('#active_code').html(html);
 					} else {
 						var html = 'Mã xác nhận không đúng';
 						$('#message').html(html);
 					}					
-						
+					//
+					$('.loader').hide();		
 				});
 
 			});
@@ -131,7 +89,7 @@ $(document).ready(function(){
 		
 	});
 
-
+	$('.loader').hide();
 
 
 });
