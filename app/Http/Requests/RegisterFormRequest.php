@@ -35,7 +35,7 @@ class RegisterFormRequest extends FormRequest
             'ward' => 'required|string|max:255',
             'job' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users|confirmed',
-            // 'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 
