@@ -24,7 +24,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        return view('home');
     }
 
     public function login(Request $request) {
@@ -53,6 +53,25 @@ class UsersController extends Controller
     {
         $user = Auth::user();
         $info = $user->userInfo;
+        //
+        $string = file_get_contents("../app/file/City_district_VN/tinh_tp.json");   
+        $json_file = json_decode($string, true);
+
+        foreach($json_file as $json){
+            if ($info->city == $json['code']){
+                $info->city = $json['name'];
+            }
+        }
+        //
+        $string = file_get_contents("../app/file/City_district_VN/quan_huyen.json");   
+        $json_file = json_decode($string, true);
+
+        foreach($json_file as $json){
+            if ($info->district == $json['code']){
+                $info->district = $json['name'];
+            }
+        }
+
         return view('users.profile')->with(['user' => $user, 'info' => $info]);
     }
 

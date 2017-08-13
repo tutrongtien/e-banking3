@@ -16,13 +16,13 @@
 	    </div>
 	    <div class="panel panel-default">
 	        <ul class="list-group">
-	            <li class="list-group-item" ><a href="{{ url('show') }}">Thông Tin cá nhân</a>
+	            <li class="list-group-item {{ is_current_route('show') }}" ><a href="{{ url('show') }}">Thông Tin cá nhân</a>
 	            </li>
-	            <li class="list-group-item"><a href="{{ url('view/transactions') }}">Thông Tin giao dịch</a>
+	            <li class="list-group-item {{ is_current_route('view/transactions') }}" ><a href="{{ url('view/transactions') }}">Thông Tin giao dịch</a>
 	            </li>
-	            <li class="list-group-item"><a href="{{ url('view/balance') }}">Thông Tin tài khoản</a>
+	            <li class="list-group-item {{ is_current_route('view/balance') }}"><a href="{{ url('view/balance') }}">Thông Tin tài khoản</a>
 	            </li>
-	            <li class="list-group-item"><a href="{{ url('password/change') }}">Đổi mật khẩu</a>
+	            <li class="list-group-item {{ is_current_route('password/change') }}" ><a href="{{ url('password/change') }}">Đổi mật khẩu</a>
 	            </li>
 	            <li class="list-group-item {{ is_current_route('internal_transfer') }}"><a href="{{ url('internal_transfer') }}">Chuyển Tiền trong hệ thống</a>
 	            </li>

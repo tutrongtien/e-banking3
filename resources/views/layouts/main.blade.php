@@ -45,20 +45,23 @@
                 </div>
 
 
-                <div class="col-md-offset-4 col-md-4">
+                <div class="col-md-offset-2 col-md-6">
                     <div class="info-login">                        
-                        <div class="head-info-login">
+                        @if(Auth::guest())
+                            <div class="head-info-login">
                             <p>Dịch vụ ngân hàng điện tử !!!</p>
                             <span>
                                 <a href="{{ route('register') }}">Đăng ký</a>
+                                <a href="{{ url('/login') }}">Đăng nhập</a>
                             </span>
                         </div>
-                        @if(Auth::guest())
-                        <a href="{{ url('/login') }}" class="btn btn-primary pull-right" title="">Dang nhap</a>
                         @else
+                        <div class="head-info-login">
+                            <p>Dịch vụ ngân hàng điện tử !!!</p>
+                        </div>
                         <!-- Split button -->
                         <div class="btn-group pull-right">
-                          <a href="{{ url('/show') }}" class="btn btn-success">{{ Auth::user()->userInfo->name }}</a>
+                          <a href="{{ url('/show') }}" class="btn btn-default">{{ Auth::user()->userInfo->name }}</a>
                           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
