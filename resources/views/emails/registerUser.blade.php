@@ -1,9 +1,13 @@
+<p>Ngân hàng Ecombanking thông báo bạn đã dùng email này để kích hoạt tài khoản. Vui lòng xác nhận bằng link bên dưới !!!!</p>
+
 <div>
-	ID: {{ $user_name }}
+	Tài khoản đăng nhập: {{ $user_name }}
 </div>
+
 <div>
-	Password: {{ $password }}
+	Mật khẩu : {{ $password }}
 </div>
+
 <div>
 	Link kích hoạt: {{ $link_active }}
 </div>

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 
+
 @section('user')
 <div class="content_info">
     <div class="paddings">
@@ -13,13 +14,9 @@
 	    </div>
 	    <div class="panel panel-default">
 	        <ul class="list-group">
-	            <li class="list-group-item" ><a href="#">Tài khoản khách hàng</a>
+	            <li class="list-group-item {{is_current_route('admin/index')}}"><a href="{{ url('admin/index') }}">Thông tin khách hàng</a>
 	            </li>
-	            <li class="list-group-item"><a href="#">Sửa/Xóa tài khoản</a>
-	            </li>
-	            <li class="list-group-item"><a href="#">Thêm tài khoản</a>
-	            </li>
-	            <li class="list-group-item"><a href="#">Tạo tài khoản</a>
+	            <li class="list-group-item {{is_current_route('admin/create')}}"><a href="{{ url('admin/create') }}">Thêm tài khoản</a>
 	            </li>
 	        </ul>
 	    </div>

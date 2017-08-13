@@ -5,25 +5,27 @@
 <meta charset="utf-8">
 <title>Ebanking - Cooperative, bank and financial Html Template</title>
 <meta name="keywords" content="HTML5 Template">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-
-<link href="{{ asset('css/main.css') }}" rel="stylesheet" media="screen">
-
-<link href="{{ asset('css/skins/green/green.css') }}" rel="stylesheet" media="screen">
- 
-
 <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 
+<link href="{{ asset('css/main.css') }}" rel="stylesheet" media="screen">
+<link href="{{ asset('css/new.css') }}" rel="stylesheet" media="screen">
+<link href="{{ asset('css/skins/green/green.css') }}" rel="stylesheet" media="screen">
 <link rel="shortcut icon" href="{{ asset('img/icons/favicon.ico') }}">
+
+
 @yield('script')
+
 
     <!--==========SCRIPTS==========-->
 
 </head>
 
 <body data-gr-c-s-loaded="true" class="none">
+    <div class="loader" id="loader">
+    </div>
 
     <div id="layout" class="layout-semiboxed">
 
@@ -48,7 +50,7 @@
                         <div class="head-info-login">
                             <p>Dịch vụ ngân hàng điện tử !!!</p>
                             <span>
-                                <a href="template-register-area.html">Đăng ký</a>
+                                <a href="{{ route('register') }}">Đăng ký</a>
                             </span>
                         </div>
                         <div class="form-theme">
@@ -289,12 +291,17 @@
                     </div>
                 </div>
             </div>
-
+            
         </footer>
 
     </div>
 
-<script src="{{ asset('js/libs/jquery.js') }}"></script>
+<!-- <script src="{{ asset('js/libs/jquery.js') }}"></script> -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.loader').hide();
+    });
+</script>
 
 <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
 

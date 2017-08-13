@@ -181,6 +181,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         //Add packge Captcha
         Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider::class,
+        //
+        Laravel\Passport\PassportServiceProvider::class,
 
 
     ],
