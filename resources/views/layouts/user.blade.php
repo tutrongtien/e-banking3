@@ -13,13 +13,13 @@
 	    </div>
 	    <div class="panel panel-default">
 	        <ul class="list-group">
-	            <li class="list-group-item" ><a href="#">Thông Tin cá nhân</a>
+	            <li class="list-group-item" ><a href="{{ url('show') }}">Thông Tin cá nhân</a>
 	            </li>
-	            <li class="list-group-item"><a href="#">Thông Tin giao dịch</a>
+	            <li class="list-group-item"><a href="{{ url('view/transactions') }}">Thông Tin giao dịch</a>
 	            </li>
-	            <li class="list-group-item"><a href="#">Thông Tin tài khoản</a>
+	            <li class="list-group-item"><a href="{{ url('view/balance') }}">Thông Tin tài khoản</a>
 	            </li>
-	            <li class="list-group-item"><a href="#">Đổi mật khẩu</a>
+	            <li class="list-group-item"><a href="{{ url('password/change') }}">Đổi mật khẩu</a>
 	            </li>
 	            <li class="list-group-item"><a href="#">Chuyển Tiền trong hệ thống</a>
 	            </li>

@@ -13,6 +13,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\MessageBag;
 use Request;
 use DB;
+use PDF;
 
 class UsersController extends Controller
 {
@@ -58,9 +59,10 @@ class UsersController extends Controller
     public function viewBalance()
     {
         $count = 1;
-        $user = Auth::user();
-        $accounts = $user->account;
-
+        $user = Auth::id();
+        //dd($user);
+        $accounts = Account::where('user_id', $user)->paginate(10);
+        //dd($accounts);
         return view('users.balance')->with(['accounts' => $accounts, 'count' => $count]);
     }
 
@@ -69,6 +71,16 @@ class UsersController extends Controller
         $account = Account::find($id);
         return response()->json(['data' => $account]);  
           
+    }
+
+    public function balancePDF()
+    {
+        $user = Auth::user();
+        $info = $user->userInfo;
+        $accounts = $user->accounts;
+        $pdf = PDF::loadView('users.balancepdf', ['user' => $user, 'info' => $info, 'accounts' => $accounts]);
+        return $pdf->stream();
+
     }
 
     public function viewTransactions()
@@ -87,6 +99,9 @@ class UsersController extends Controller
                             ->whereBetween('time', [$fdate, $tdate])
                             ->orderBy('time', 'desc')->get();
                             
+            foreach ($transactions as $transaction) {
+                             $transaction->money = number_format($transaction->money);
+                    }             
             return response()->json(['data' => $transactions]);
         }
     }

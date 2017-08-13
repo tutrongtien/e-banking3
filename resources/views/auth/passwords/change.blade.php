@@ -1,32 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.user')
 
 @section('content')
-<div class="row">
-<div class="f-info">
-
-	<div class="col-md-4">
-		
-	<div class="list-group">
-	  <p class="list-group-item active ">Quản Lý Người Dùng</p>
-
-	  <a href="{{ url('show') }}" class="list-group-item">Thông tin cá nhân</a>
-	  <a href="{{ url('view/transactions') }}" class="list-group-item">Thông tin giao dịch</a>
-	  <a href="{{ url('view/balance') }}" class="list-group-item">Thông tin tài khoan</a>
-	  <a href="{{ url('password/change') }}" class="list-group-item">Đổi mật khẩu</a>
-	</div>
-	<div class="list-group">
-	  <p class="list-group-item active">Giao Dịch</p>
-	  <a href="#" class="list-group-item">Chuyển tiền trong hệ thống</a>
-	  <a href="#" class="list-group-item">Chuyển tiền ngoài hệ thống</a>
-	</div>
-
-	</div>
-
-	<div class="col-md-8 ">
-	<div class="info-action">
-	<div class="alert alert-info" role="alert">
+<div class="alert alert-info" role="alert">
 		Đổi Mật Khẩu
-	</div>
+</div>
+<div class="f-info">
+	<div class="info-action">
+
 
 	@if (count($errors) > 0)
         <ul class="alert alert-danger">
@@ -56,8 +36,5 @@
 		
 	{!! Form::close() !!}	
 	</div>	
-	</div>
-	</div>
-</div>
 </div>
 @stop()

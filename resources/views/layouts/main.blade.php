@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Ebanking - Cooperative, bank and financial Html Template</title>
+<title>Ebanking - Your money is safe.</title>
 <meta name="keywords" content="HTML5 Template">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,9 @@
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="screen">
 
 <link href="{{ asset('css/skins/green/green.css') }}" rel="stylesheet" media="screen">
- 
+<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
 <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-
 <link rel="shortcut icon" href="{{ asset('img/icons/favicon.ico') }}">
 @yield('script')
 
@@ -33,9 +32,9 @@
         <header id="header">
             <div class="row">
 
-                <div class="col-md-4 col-lg-5">
+                <div class="col-md-4">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ url('/') }}">
                             Ebanking
                             <span>Your money is safe.</span>
                         </a>
@@ -43,22 +42,28 @@
                 </div>
 
 
-                <div class="col-md-8 col-lg-7">
-                    <div class="info-login">
+                <div class="col-md-offset-4 col-md-4">
+                    <div class="info-login">                        
                         <div class="head-info-login">
-                            <p>Dịch vụ ngân hàng điện tử !!!</p>
-                            <span>
-                                <a href="template-register-area.html">Đăng ký</a>
-                            </span>
+                            <p>Dịch vụ ngân hàng điện tử Ebanking</p>
                         </div>
-                        <div class="form-theme">
-                            <form action="template-user-area.html">
-                                <input type="number" placeholder="Tài khoản" class="input">
-                                <input type="number" placeholder="Mật khẩu" class="input">
-                                <input type="submit" class="btn" value="Go">
-                            </form>
+                        @if(Auth::guest())
+                        <a href="{{ url('/login') }}" class="btn btn-primary pull-right" title="">Dang nhap</a>
+                        @else
+                        <!-- Split button -->
+                        <div class="btn-group pull-right">
+                          <a href="{{ url('/show') }}" class="btn btn-success">{{ Auth::user()->userInfo->name }}</a>
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu btn-info">
+                            <li><a class="" href="{{ url('/logout') }}">Dang xuat</a></li>
+                          </ul>
                         </div>
+                        @endif
                     </div>
+
                 </div>
 
             </div>
