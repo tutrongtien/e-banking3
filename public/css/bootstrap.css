@@ -2248,9 +2248,7 @@ pre code {
     margin-left: 0;
   }
 }
-table {
-  background-color: transparent;
-}
+/*  */
 caption {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -2388,7 +2386,7 @@ table th[class*="col-"] {
 .table > thead > tr.info > th,
 .table > tbody > tr.info > th,
 .table > tfoot > tr.info > th {
-  background-color: #d9edf7;
+  background-color: #2f98cc;
 }
 .table-hover > tbody > tr > td.info:hover,
 .table-hover > tbody > tr > th.info:hover,

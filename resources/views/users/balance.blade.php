@@ -1,36 +1,18 @@
-@extends('layouts.master')
+@extends('layouts.user')
 
 @section('content')
-<div class="row">
+<div class="info">
+	Số Dư Tài Khoản
+</div>
+
 <div class="f-info">
-
-	<div class="col-md-4">
-		
-	<div class="list-group">
-	  <p class="list-group-item active ">Quản Lý Người Dùng</p>
-
-	  <a href="{{ url('show') }}" class="list-group-item">Thông tin cá nhân</a>
-	  <a href="{{ url('view/transactions') }}" class="list-group-item">Thông tin giao dịch</a>
-	  <a href="{{ url('view/balance') }}" class="list-group-item">Thông tin tài khoan</a>
-	  <a href="{{ url('password/change') }}" class="list-group-item">Đổi mật khẩu</a>
-	</div>
-	<div class="list-group">
-	  <p class="list-group-item active">Giao Dịch</p>
-	  <a href="#" class="list-group-item">Chuyển tiền trong hệ thống</a>
-	  <a href="#" class="list-group-item">Chuyển tiền ngoài hệ thống</a>
-	</div>
-
-	</div>
-
-	<div class="col-md-8 ">
-	<div class="info">
-		So Du Tai Khoan
-	</div>
-	<div class="info-action">
-	  <table class="table table-hover table-bordered">
-	  	<caption>Thông tin tài khoản tính đến ngày : {!! date("Y-m-d h:i:sa") !!} </caption>
+	<div>
+	   
+	   <table  class="table table-hover table-bordered t-info">
+	  	<caption>Thông tin tài khoản tính đến ngày : {!! date("Y-m-d h:i:sa") !!} <a href="{{ url('balance/pdf') }}" class="btn btn-info pull-right" title=""><span class="glyphicon glyphicon-download-alt
+">PDF</span></a> </caption>
 	  	<thead>
-	  		<tr class="info">
+	  		<tr class="success">
 	  			<th>STT</th>
 	  			<th>Tên Chủ Thẻ</th>
 	  			<th>Số Tài Khoản</th>
@@ -45,13 +27,14 @@
 			  	<td>{{ $count++ }}</td>
 			  	<td>{{ Auth::user()->userInfo->name }}</td>
 			  	<td>{{ $account->bank_number }}</td>
-			  	<td>{{ number_format($account->balance,3) }}</td>
+			  	<td>{{ number_format($account->balance,2) }}</td>
 			  	<td>{{ $account->currency }}</td>
 			  	<td><a href="#" class="link-balance" id="{{ $account->id }}" >Chi tiet</a></td>
 			 </tr>
 	  		@endforeach
 	  	</tbody>
 	  </table>
+	  {{ $accounts->links() }}
 	  <div id="balance">
 
 	  </div>
@@ -66,7 +49,7 @@
 	  					success:function(kq) {
 							var output = "<table class ='table table-hover table-bordered'>";
 							$.each(kq, function(key, item){
-								output += "<tr>";
+								output += "<tr class='info' >";
 								output += "<td colspan='2'> Số tài khoản : " + item.bank_number + "</td>";
 								output += "</tr>";
 								output += "<tr>";
@@ -90,9 +73,6 @@
 	  		});
 
 	  </script>	
-
-
 	</div>
-</div>
 </div>
 @stop

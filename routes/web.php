@@ -29,6 +29,8 @@ Route::post('/transactions/detail', 'UsersController@detailTransactions');
 
 Route::get('/logout', 'UsersController@logout')->middleware('auth');
 
+Route::get('balance/pdf', 'UsersController@balancePDF');
+
 //register user
 Route::post('/register_user', 'RegisterController@store');
 Route::get('/user/active/{confirmcode}', 'RegisterController@confirm');

@@ -1,31 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.user')
 
 @section('content')
-<div class="row">
+<div class="info">
+	Thông tin giao dịch
+</div>
 <div class="f-info">
-
-	<div class="col-md-4">
-		
-	<div class="list-group">
-	  <p class="list-group-item active ">Quản Lý Người Dùng</p>
-
-	  <a href="{{ url('show') }}" class="list-group-item">Thông tin cá nhân</a>
-	  <a href="{{ url('view/transactions') }}" class="list-group-item">Thông tin giao dịch</a>
-	  <a href="{{ url('view/balance') }}" class="list-group-item">Thông tin tài khoan</a>
-	  <a href="{{ url('password/change') }}" class="list-group-item">Đổi mật khẩu</a>	</div>
-	<div class="list-group">
-	  <p class="list-group-item active">Giao Dịch</p>
-	  <a href="#" class="list-group-item">Chuyển tiền trong hệ thống</a>
-	  <a href="#" class="list-group-item">Chuyển tiền ngoài hệ thống</a>
-	</div>
-
-	</div>
-
-	<div class="col-md-8 ">
-	<div class="info">
-		Thông tin giao dịch
-	</div>
-	<div class="info-action">
 
 	<div class="form-group">
 		{!! Form::open(['url' => '#', 'id' => 'transactions']) !!}
@@ -48,10 +27,8 @@
 			{!! Form::date('to_date',null, ['class' => 'form-control']) !!}
 			</div>
 		</div>
-
-		<div class="form-group">
-			{!! Form::submit('Liệt Kê', ['class' => 'btn btn-info', 'id' => 'sublietke']) !!}
-		</div>
+		{!! Form::submit('Liệt Kê', ['class' => 'btn btn-info', 'id' => 'sublietke']) !!}
+		
 		{!! Form::close() !!}
 	</div>
 
@@ -97,7 +74,5 @@
 		});
 
 	</script>
-	</div>
-	</div>
 </div>
 @stop
