@@ -27,7 +27,7 @@
 			  	<td>{{ $count++ }}</td>
 			  	<td>{{ Auth::user()->userInfo->name }}</td>
 			  	<td>{{ $account->bank_number }}</td>
-			  	<td>{{ number_format($account->balance,2) }}</td>
+			  	<td>{{ $account->balance }}</td>
 			  	<td>{{ $account->currency }}</td>
 			  	<td><a href="#" class="link-balance" id="{{ $account->id }}" >Chi tiet</a></td>
 			 </tr>
@@ -62,7 +62,12 @@
 								output += "</tr>";
 								output += "<tr>";
 								output += "<td> Loại Thẻ </td>";
-								output += "<td>" + item.type + "</td>";
+								if(item.type == 1){
+									output += "<td> Nội địa </td>";	
+								}else{
+									output += "<td> Quốc tế </td>";
+								}
+								
 								output += "</tr>";
 							})
 							output += "</table>";
