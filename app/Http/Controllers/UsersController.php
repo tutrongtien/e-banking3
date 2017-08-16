@@ -27,10 +27,9 @@ class UsersController extends Controller
         return view('home');
     }
 
-    public function login(Request $request) {
-       
+    public function login() 
+    {   
         return view('auth.login');
-              
     }
 
     public function postLogin(CreateUserRequest $request)
@@ -39,21 +38,20 @@ class UsersController extends Controller
                 'password' => $request->input('password'),
                 'status' => true,
         ];
-        $token_captcha = $request->input('g-recaptcha-response');
+         $token_captcha = $request->input('g-recaptcha-response');
         
         if (strlen($token_captcha) > 0 && Auth::attempt($data) == true) {
             return  redirect('/show');
         } else {
-            return redirect('/login');
-        }
-            
+            return redirect('/login');    
+        }         
     }
 
     public function profile() 
     {
         $user = Auth::user();
         $info = $user->userInfo;
-        //
+        //tim file json
         $string = file_get_contents("../app/file/City_district_VN/tinh_tp.json");   
         $json_file = json_decode($string, true);
 
@@ -79,15 +77,17 @@ class UsersController extends Controller
     {
         $count = 1;
         $user = Auth::id();
-        //dd($user);
-        $accounts = Account::where('user_id', $user)->paginate(10);
-        //dd($accounts);
+        $accounts = Account::where('user_id', $user)->paginate(5);
+        foreach( $accounts as $account) {
+            $account->balance = number_format($account->balance, 2);
+        }
         return view('users.balance')->with(['accounts' => $accounts, 'count' => $count]);
     }
 
     public function ajaxBalance($id) 
     {
         $account = Account::find($id);
+        $account->balance = number_format($account->balance, 2);
         return response()->json(['data' => $account]);  
           
     }
@@ -97,10 +97,25 @@ class UsersController extends Controller
         $user = Auth::user();
         $info = $user->userInfo;
         $accounts = $user->accounts;
+        //dd($accounts);
         $pdf = PDF::loadView('users.balancepdf', ['user' => $user, 'info' => $info, 'accounts' => $accounts]);
         return $pdf->stream();
 
     }
+
+    public function transactionsPDF() 
+    {
+        $id = Request::get('id');
+        $fdate = Request::get('fdate');
+        $tdate = Request::get('tdate');
+        $transactions = Transaction::where('account_id', $id)
+                        ->whereBetween('time', [ $fdate, $tdate ])
+                        ->orderBy('time', 'desc')->get();
+        $count = 1;
+        $pdf = PDF::loadView('users.transactionspdf', [ 'transactions' => $transactions, 'count'  => $count ]);
+        return $pdf->stream();
+
+    }    
 
     public function viewTransactions()
     {
@@ -119,8 +134,8 @@ class UsersController extends Controller
                             ->orderBy('time', 'desc')->get();
                             
             foreach ($transactions as $transaction) {
-                             $transaction->money = number_format($transaction->money);
-                    }             
+                $transaction->money = number_format($transaction->money);
+                }             
             return response()->json(['data' => $transactions]);
         }
     }

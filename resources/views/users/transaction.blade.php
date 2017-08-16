@@ -6,7 +6,6 @@
 	Thông tin giao dịch
 </div>
 <div class="f-info">
-
 	<div class="form-group">
 		{!! Form::open(['url' => '#', 'id' => 'transactions']) !!}
 		<div class="form-group">
@@ -29,6 +28,7 @@
 			</div>
 		</div>
 		{!! Form::submit('Liệt Kê', ['class' => 'btn btn-info', 'id' => 'sublietke']) !!}
+		<a href="#" id="send_pdf" class="btn btn-warning pull-right">PDF</a>
 		
 		{!! Form::close() !!}
 	</div>
@@ -36,9 +36,25 @@
 	<div id="viewtransactions">
 		
 	</div>
-
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$("#send_pdf").on('click', function(e) {
+				e.preventDefault();
+				fdate = $("#from_date").val();
+				tdate = $("#to_date").val();
+				account_id = $("#account").val();
+				_token = $("#transactions").find("input[name='_token']").val();
+				$.ajax({
+					url:"{{url('transactions/pdf')}}",
+					type:"get",
+					data:{ fdate : fdate, tdate : tdate, _token : _token, id : account_id }
+				})
+			})
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
 			$("#sublietke").on('click', function(e){
 				e.preventDefault();
 
@@ -62,8 +78,16 @@
 								output += "<td>" + transaction.time + "</td>";
 								output += "<td>" + transaction.place + "</td>";
 								output += "<td>" + transaction.detail + "</td>";
-								output += "<td>" + "" + "</td>";
-								output += "<td>" + transaction.money + "</td></tr>";
+								if( transaction.type  == 0) {
+									output += "<td>" + transaction.money + "</td>";	
+								}else {
+									output += "<td></td>";
+								}
+								if( transaction.type  == 1) {
+									output += "<td>" + transaction.money + "</td></tr>";	
+								}else {
+									output += "<td></td></tr>";
+								}		
 							})
 							output += "</table>";
 						})
