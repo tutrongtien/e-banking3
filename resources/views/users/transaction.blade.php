@@ -1,5 +1,6 @@
 @extends('layouts.user')
 
+
 @section('content')
 <div class="info">
 	Thông tin giao dịch

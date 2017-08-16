@@ -107,7 +107,7 @@ class TransferAPIController extends Controller
 
 			//
 			if (! $transaction) {
-	            return response('false', 200);
+	            return response('fail', 200);
 	        }
 
 	        //
