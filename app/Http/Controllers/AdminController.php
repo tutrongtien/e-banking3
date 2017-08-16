@@ -46,7 +46,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index', ['users' => User::OrderBy('id', 'DESC')->paginate(10)]);
+        return view('admin.index', ['users' => User::OrderBy('id', 'DESC')->paginate(7)]);
     }
 
     /**
