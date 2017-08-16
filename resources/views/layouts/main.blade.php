@@ -67,7 +67,10 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <ul class="dropdown-menu btn-info">
-                            <li><a class="" href="{{ url('/logout') }}">Dang xuat</a></li>
+                            <li><a class="" href="{{ url('/logout') }}">Đăng xuất</a></li>
+                            @if(Auth::user()->is_admin)
+                                <li><a class="" href="{{ url('/admin/index') }}">Admin</a></li>
+                            @endif
                           </ul>
                         </div>
                         @endif
@@ -97,64 +100,10 @@
                                 <ul class="nav navbar-nav">
 
                                     <li class="dropdown">
-                                        <a href="index.html" data-toggle="dropdown" class="dropdown-toggle">
-                                            Trang chủ<b class="caret"></b>
+                                        <a href="{{ url('/') }}" >
+                                            Trang chủ
                                         </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-
-                                                <div class="yamm-content">
-                                                    <div class="row">
-                                                        <ul class="col-md-4 list-unstyled">
-                                                            <li>
-                                                                <strong>
-                                                                    <i class="fa fa-bank"></i>
-                                                                    Banks - Finance
-                                                                </strong>
-                                                                <span>Special For Financial institutions</span>
-                                                            </li>
-                                                            <li><a href="index.html"> Version 1 </a>
-                                                            </li>
-                                                            <li><a href="index-bank-2.html"> Version 2 </a>
-                                                            </li>
-                                                            <li><a href="index-bank-3.html"> Version 3 </a>
-                                                            </li>
-                                                        </ul>
-                                                        <ul class="col-md-4 list-unstyled">
-                                                            <li>
-                                                                <strong>
-                                                                    <i class="fa fa-child"></i>
-                                                                    COOPERATIVES
-                                                                </strong>
-                                                                <span>Focused for cooperatives</span>
-                                                            </li>
-                                                            <li><a href="index-cooperative-1.html"> Version 1 </a>
-                                                            </li>
-                                                            <li><a href="index-cooperative-2.html"> Version 2 </a>
-                                                            </li>
-                                                            <li><a href="index-cooperative-3.html"> Version 3 </a>
-                                                            </li>
-                                                        </ul>
-                                                        <ul class="col-md-4 list-unstyled">
-                                                            <li>
-                                                                <strong>
-                                                                    <i class="fa fa-group"></i>
-                                                                    Employees Funds
-                                                                </strong>
-                                                                <span>Employee Funds versions</span>
-                                                            </li>
-                                                            <li><a href="index-employee-1.html"> Version 1 </a>
-                                                            </li>
-                                                            <li><a href="index-employee-2.html"> Version 2 </a>
-                                                            </li>
-                                                            <li><a href="index-employee-3.html"> Version 3 </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <i class="fa fa-dropbox big-icon"></i>
-                                            </li>
-                                        </ul>
+                                        
                                     </li>
 
 
