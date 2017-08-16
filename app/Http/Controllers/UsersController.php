@@ -62,7 +62,6 @@ class UsersController extends Controller
                 $info->city = $json['name'];
             }
         }
-        //
         $string = file_get_contents("../app/file/City_district_VN/quan_huyen.json");   
         $json_file = json_decode($string, true);
 
