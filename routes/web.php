@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('ajax/balance/{id}', 'UsersController@ajaxBalance');
 
     Route::get('view/transactions', 'UsersController@viewTransactions');
-	Route::post('/transactions/detail', 'UsersController@detailTransactions');
+	Route::get('/transactions/detail', 'UsersController@detailTransactions');
 
 	Route::get('/logout', 'UsersController@logout');
 	Route::get('balance/pdf', 'UsersController@balancePDF');

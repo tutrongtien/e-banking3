@@ -7,7 +7,7 @@
 </div>
 <div class="f-info">
 	<div class="form-group">
-		{!! Form::open(['url' => '#', 'id' => 'transactions']) !!}
+		{!! Form::open(['url' => 'transactions/pdf', 'id' => 'transactions', 'method' => 'get']) !!}
 		<div class="form-group">
 			{!! Form::label('account', 'Số Tài Khoản') !!}
 			 <div class="form-controls">
@@ -28,7 +28,9 @@
 			</div>
 		</div>
 		{!! Form::submit('Liệt Kê', ['class' => 'btn btn-info', 'id' => 'sublietke']) !!}
-		<a href="#" id="send_pdf" class="btn btn-warning pull-right">PDF</a>
+		{!! Form::submit('PDF', ['class' => 'btn btn-warning pull-right']) !!}
+		
+
 		
 		{!! Form::close() !!}
 	</div>
@@ -36,22 +38,7 @@
 	<div id="viewtransactions">
 		
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#send_pdf").on('click', function(e) {
-				e.preventDefault();
-				fdate = $("#from_date").val();
-				tdate = $("#to_date").val();
-				account_id = $("#account").val();
-				_token = $("#transactions").find("input[name='_token']").val();
-				$.ajax({
-					url:"{{url('transactions/pdf')}}",
-					type:"get",
-					data:{ fdate : fdate, tdate : tdate, _token : _token, id : account_id }
-				})
-			})
-		});
-	</script>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
@@ -65,7 +52,7 @@
 
 				$.ajax({
 					url:"{{url('transactions/detail')}}",
-					type:"post",
+					type:"get",
 					data:{ fdate : fdate, tdate : tdate, _token : _token, id : account_id },
 					success:function(result) {
 
