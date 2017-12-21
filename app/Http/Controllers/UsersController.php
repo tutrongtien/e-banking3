@@ -98,20 +98,23 @@ class UsersController extends Controller
         $accounts = $user->accounts;
         //dd($accounts);
         $pdf = PDF::loadView('users.balancepdf', ['user' => $user, 'info' => $info, 'accounts' => $accounts]);
+        // dd($pdf->stream());
         return $pdf->stream();
 
     }
 
     public function transactionsPDF() 
     {
-        $id = Request::get('id');
-        $fdate = Request::get('fdate');
-        $tdate = Request::get('tdate');
+        $id = Request::get('account');
+        $fdate = Request::get('from_date');
+        $tdate = Request::get('to_date');
         $transactions = Transaction::where('account_id', $id)
                         ->whereBetween('time', [ $fdate, $tdate ])
                         ->orderBy('time', 'desc')->get();
         $count = 1;
+
         $pdf = PDF::loadView('users.transactionspdf', [ 'transactions' => $transactions, 'count'  => $count ]);
+
         return $pdf->stream();
 
     }    
