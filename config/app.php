@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,6 +181,12 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         //Add packge Captcha
         Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider::class,
+        // FDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+        //
+        Laravel\Passport\PassportServiceProvider::class,
+        //Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
     ],
@@ -234,6 +240,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Captcha' => \Buzz\LaravelGoogleCaptcha\CaptchaFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

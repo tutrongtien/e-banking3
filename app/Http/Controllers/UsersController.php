@@ -1,11 +1,20 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateUserRequest;
 use Auth;
 use App\User;
 use App\UserInfo;
+use App\Account;
+use App\Transaction;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ChangePasswordRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\MessageBag;
+use Request;
+use DB;
+use PDF;
+
 class UsersController extends Controller
 {
     /**
@@ -15,89 +24,143 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        return view('home');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function login(Request $request) {
+       
+        return view('auth.login');
+              
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login() {
-        return view('passwords.login');
-    }
-
-    public function store(Request $request, User $user)
+    public function postLogin(CreateUserRequest $request)
     {
         $data = ['user_name' => $request->input('username'), 
                 'password' => $request->input('password'),
-                'status' => true ];
-        $token = $request->input('g-recaptcha-response');
-        //dd($token);      
-        if (strlen($token) > 0 && Auth::attempt($data) == true) {
-
-            $user = User::where('user_name', $data)->get();
-            dd($user);
-            return redirect('/profile/' . $user->id);
+                'status' => true,
+        ];
+        $token_captcha = $request->input('g-recaptcha-response');
+        
+        if (strlen($token_captcha) > 0 && Auth::attempt($data) == true) {
+            return  redirect('/show');
         } else {
             return redirect('/login');
         }
             
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function profile() 
     {
+        $user = Auth::user();
+        $info = $user->userInfo;
         //
+        $string = file_get_contents("../app/file/City_district_VN/tinh_tp.json");   
+        $json_file = json_decode($string, true);
+
+        foreach($json_file as $json){
+            if ($info->city == $json['code']){
+                $info->city = $json['name'];
+            }
+        }
+        //
+        $string = file_get_contents("../app/file/City_district_VN/quan_huyen.json");   
+        $json_file = json_decode($string, true);
+
+        foreach($json_file as $json){
+            if ($info->district == $json['code']){
+                $info->district = $json['name'];
+            }
+        }
+
+        return view('users.profile')->with(['user' => $user, 'info' => $info]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function viewBalance()
     {
-        //
+        $count = 1;
+        $user = Auth::id();
+        //dd($user);
+        $accounts = Account::where('user_id', $user)->paginate(10);
+        //dd($accounts);
+        return view('users.balance')->with(['accounts' => $accounts, 'count' => $count]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function ajaxBalance($id) 
     {
-        //
+        $account = Account::find($id);
+        return response()->json(['data' => $account]);  
+          
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function balancePDF()
     {
-        //
+        $user = Auth::user();
+        $info = $user->userInfo;
+        $accounts = $user->accounts;
+        $pdf = PDF::loadView('users.balancepdf', ['user' => $user, 'info' => $info, 'accounts' => $accounts]);
+        return $pdf->stream();
+
+    }
+
+    public function viewTransactions()
+    {
+        return view('users.transaction');
+    }
+
+    public function detailTransactions(Request $request)
+    {
+        if(Request::ajax()) {
+            $id = Request::get('id');
+            $fdate = Request::get('fdate');
+            $tdate = Request::get('tdate');
+            $transactions = DB::table('transactions')
+                            ->where('account_id', $id)
+                            ->whereBetween('time', [$fdate, $tdate])
+                            ->orderBy('time', 'desc')->get();
+                            
+            foreach ($transactions as $transaction) {
+                             $transaction->money = number_format($transaction->money);
+                    }             
+            return response()->json(['data' => $transactions]);
+        }
+    }
+  
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
+
+    public function changePassword()
+    {
+        $user = Auth::user();
+        return view('auth.passwords.change')->with('user', $user);
+    }
+
+    public function updatePassword(ChangePasswordRequest $request )
+    {   
+        $user = Auth::user();
+        $has_pass = $user->password;
+        $current_pass = $request->input('password');
+
+        if(!Hash::check($current_pass, $has_pass)) {
+            $errors = new MessageBag(['password' => ['Mật khẩu cũ không chính xác']]);
+            return back()->withErrors($errors)->withInput();
+        }else {
+            $new_pass = $request->input('password_new');
+            $confirm_pass = $request->input('password_confirm');
+
+            if($new_pass != $confirm_pass) {
+                $errors = new MessageBag(['new_password' => ['Mật khẩu nhập lại không chính xác']]);
+                return back()->withErrors($errors)->withInput();  
+            }else {
+                $has_pass = bcrypt($new_pass);
+                $user->password = $has_pass;
+                $user->save();
+            }
+        } 
+        return redirect('show');    
     }
         
 }

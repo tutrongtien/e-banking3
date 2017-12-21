@@ -1,3 +1,32 @@
+*{
+	font-family: 'Noto Sans', sans-serif;
+	text-decoration: none;
+
+}
+
+/* userinfo */
+div.info {
+	color: #fff;
+	background-color:rgb(21, 164, 211) ;
+	font-size: 17px;
+	border: 2px;
+	padding: 10px 10px 0px 10px;
+	margin-bottom: 5px;
+}
+div.f-info {
+	background-color: #eee;
+	padding: 20px;
+	border-radius: 5px;
+}
+div.info-action {
+	border: 1px solid #006699 ;
+	padding: 10px;
+}
+div table.t-info {
+	text-align: left;
+}
+/* end userinfo */
+/* login */
 .background{
 	background-image: url("../img/banner.jpg");
 	padding:150px;
@@ -7,15 +36,25 @@
 text-align:center;
 
 }
-span{
-	margin-left: 20px;
-
-}
 .login-color{
 	color: #fff;
 	font-weight: bold;
+	border-radius: 5px;
+	background-color:#2874B2;
+	padding: 30px 10px;
 }
-footer{
-	padding: 10px;
-	background-color: black;
+div span a {
+	padding-left: 10px;
+	color: #fff	;
+}
+div h3 {
+	color: #5E2028;
+	text-align: center;
+}
+/* end login */	
+
+
+
+#dang_nhap {
+    padding: 15px;
 }
