@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 	Route::get('/logout', 'UsersController@logout');
 	Route::get('balance/pdf', 'UsersController@balancePDF');
+	Route::get('transactions/pdf', 'UsersController@transactionsPDF');
 
 	//transfer
 	Route::get('/internal_transfer', 'TransferController@internal_transfer');

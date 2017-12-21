@@ -5,13 +5,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
 	<link rel="stylesheet" href="">
-	<style type="text/css" media="screen">
-		table {
-    		font-family: "Times New Roman", Georgia, Serif;
-			border: 2px solid;
-
+	<style type="text/css">
+		*{
+			font-family: "Times New Roman ", Times, cursive, sans-serif;
 		}
-	</style>			
+	    table,th,td{
+	        border:1px solid black;
+	        border-collapse: collapse;
+	        font-family: ;
+	     }
+	     th, td{
+	       	padding: 10px;
+		}
+	</style>					
 </head>
 <body>
 	<div>

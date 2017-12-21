@@ -4,6 +4,8 @@
   <script type="text/javascript" src="{{ asset('js/external_transfer.js') }}"></script>
 @stop
 
+
+
 @section('content')
     <p style="color: #15a4d3; font-weight: bold;">Chuyển tiền đến một tài khoản ngoài Ngân Hàng</p>
     <div class="panel panel-info">

@@ -6,6 +6,8 @@
 
 @section('user')
 <div class="content_info">
+
+
     <div class="paddings">
         <div class="container">                      
                <div class="row user-area">
